@@ -6,7 +6,6 @@ import {
   useReducedMotion,
   AnimatePresence,
 } from "framer-motion";
-import { InstallBanner } from "@/components/pwa/install-banner";
 import { LandingAnalyzeForm } from "./landing-analyze-form";
 import { cn } from "@/lib/cn";
 import {
@@ -115,8 +114,6 @@ export function LandingHeroWow({
       <div className="relative mx-auto w-full max-w-6xl">
         <div className="grid w-full items-start gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center lg:gap-10">
           <div className="min-w-0">
-            <InstallBanner />
-
             <motion.div
               initial={reduce ? false : { opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}

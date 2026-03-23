@@ -8,6 +8,7 @@ import {
   useMemo,
   useState,
 } from "react";
+import { InstallPrompt } from "@/components/pwa/install-banner";
 import { SmoothScroll } from "@/components/smooth-scroll";
 
 type Theme = "dark" | "light";
@@ -95,7 +96,10 @@ export function AppProviders({ children }: { children: React.ReactNode }) {
   return (
     <ThemeProvider>
       <DemoModeProvider>
-        <SmoothScroll>{children}</SmoothScroll>
+        <SmoothScroll>
+          {children}
+          <InstallPrompt />
+        </SmoothScroll>
       </DemoModeProvider>
     </ThemeProvider>
   );
