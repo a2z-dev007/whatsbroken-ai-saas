@@ -17,23 +17,26 @@ export function BottomNav() {
 
   return (
     <nav
-      className="glass-panel fixed bottom-0 left-0 right-0 z-40 border-t border-inspect-border pb-[env(safe-area-inset-bottom)] lg:hidden"
+      className="glass-panel fixed bottom-0 left-0 right-0 z-40 border-t border-inspect-border pb-[max(0.5rem,env(safe-area-inset-bottom,0px))] pt-1 shadow-[0_-8px_32px_rgba(0,0,0,0.35)] lg:hidden"
       aria-label="Primary"
     >
-      <ul className="scrollbar-hide flex snap-x snap-mandatory gap-1 overflow-x-auto px-2 py-2">
+      <ul
+        className="scrollbar-hide flex snap-x snap-mandatory gap-0.5 overflow-x-auto px-1.5 py-1 sm:gap-1 sm:px-2 sm:py-2"
+        data-lenis-prevent
+      >
         {items.map(({ href, label, icon: Icon }) => {
           const active =
             href === "/"
               ? pathname === "/"
               : pathname === href || pathname.startsWith(`${href}/`);
           return (
-            <li key={href} className="min-w-[4.25rem] flex-1 snap-center">
+            <li key={href} className="min-w-[3.75rem] flex-1 snap-center sm:min-w-[4.25rem]">
               <Link
                 href={href}
                 className={cn(
-                  "flex flex-col items-center gap-0.5 rounded-xl px-2 py-2 text-[10px] font-medium transition-colors",
+                  "touch-manipulation flex min-h-[48px] flex-col items-center justify-center gap-0.5 rounded-xl px-1.5 py-2 text-[10px] font-medium transition-colors active:opacity-80",
                   active
-                    ? "text-violet-400"
+                    ? "bg-violet-500/10 text-violet-400"
                     : "text-inspect-muted hover:text-inspect-text",
                 )}
               >

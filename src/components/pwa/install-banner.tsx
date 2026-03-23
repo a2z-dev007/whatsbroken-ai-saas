@@ -17,7 +17,7 @@ export function InstallBanner() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 12 }}
-          className="glass-panel mx-auto mb-4 max-w-lg rounded-2xl border border-inspect-border p-4 shadow-xl"
+          className="glass-panel mx-auto mb-4 w-full max-w-lg rounded-2xl border border-inspect-border p-3 shadow-xl sm:p-4"
         >
           <div className="flex items-start gap-3">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500/30 to-blue-500/20 text-lg">

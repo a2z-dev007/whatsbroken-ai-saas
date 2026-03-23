@@ -8,6 +8,7 @@ import {
   useMemo,
   useState,
 } from "react";
+import { SmoothScroll } from "@/components/smooth-scroll";
 
 type Theme = "dark" | "light";
 
@@ -93,7 +94,9 @@ export function useDemoMode() {
 export function AppProviders({ children }: { children: React.ReactNode }) {
   return (
     <ThemeProvider>
-      <DemoModeProvider>{children}</DemoModeProvider>
+      <DemoModeProvider>
+        <SmoothScroll>{children}</SmoothScroll>
+      </DemoModeProvider>
     </ThemeProvider>
   );
 }

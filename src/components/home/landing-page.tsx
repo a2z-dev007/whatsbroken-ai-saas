@@ -21,19 +21,23 @@ export function LandingPage() {
   } = useLandingAnalyze();
 
   return (
-    <div className="inspect-gradient-bg relative min-h-dvh">
+    <div className="inspect-gradient-bg relative min-h-dvh safe-bottom">
+      {/* Nav stays outside overflow-x clip so position:sticky works (overflow on ancestors breaks sticky) */}
       <LandingNav />
 
-      <LandingHeroWow
-        url={url}
-        setUrl={setUrl}
-        analyze={analyze}
-        loading={loading}
-      />
+      <div className="overflow-x-hidden">
+        <LandingHeroWow
+          url={url}
+          setUrl={setUrl}
+          analyze={analyze}
+          loading={loading}
+        />
 
-      <LandingSections />
+        <div className="overflow-x-hidden">
+          <LandingSections />
+        </div>
 
-      <section className="relative overflow-hidden border-t border-inspect-border/80 bg-gradient-to-b from-violet-950/40 via-inspect-bg to-inspect-bg px-4 py-16 sm:px-6 sm:py-24">
+        <section className="relative overflow-hidden border-t border-inspect-border/80 bg-gradient-to-b from-violet-950/40 via-inspect-bg to-inspect-bg px-4 py-16 sm:px-6 sm:py-24">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_0%,rgba(139,92,246,0.15),transparent)]" />
         <div className="relative mx-auto max-w-6xl">
           <div className="mx-auto max-w-2xl text-center">
@@ -75,7 +79,8 @@ export function LandingPage() {
         </div>
       </section>
 
-      <LandingFooter />
+        <LandingFooter />
+      </div>
 
       <AnimatePresence>
         {loading && (
@@ -85,7 +90,7 @@ export function LandingPage() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <div className="glass-panel max-w-sm rounded-2xl p-8 text-center">
+            <div className="glass-panel mx-4 w-[min(100%,24rem)] max-w-sm rounded-2xl p-6 text-center sm:mx-auto sm:p-8">
               <div className="mx-auto mb-4 h-14 w-14 rounded-2xl bg-gradient-to-br from-violet-500/40 to-blue-500/30 p-0.5">
                 <div className="flex h-full w-full items-center justify-center rounded-[0.9rem] bg-inspect-card">
                   <span className="h-8 w-8 animate-pulse rounded-full bg-gradient-to-r from-violet-400 to-blue-400 opacity-80" />

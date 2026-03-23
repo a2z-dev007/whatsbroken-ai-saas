@@ -106,15 +106,15 @@ export function LandingHeroWow({
   return (
     <section
       id="analyze"
-      className="hero-grid-bg relative scroll-mt-28 overflow-hidden px-4 pb-20 pt-4 sm:px-6 sm:pb-28 sm:pt-6"
+      className="hero-grid-bg relative scroll-mt-[calc(5.5rem+env(safe-area-inset-top,0px))] overflow-x-hidden px-3 pb-14 pt-8 sm:scroll-mt-32 sm:px-6 sm:pb-36 sm:pt-16"
     >
       <div className="hero-aurora pointer-events-none absolute inset-0" aria-hidden />
       <div className="pointer-events-none absolute -left-32 top-20 h-[420px] w-[420px] rounded-full bg-violet-600/20 blur-[100px]" />
       <div className="pointer-events-none absolute -right-20 top-40 h-[360px] w-[360px] rounded-full bg-blue-600/15 blur-[90px]" />
 
-      <div className="relative mx-auto max-w-6xl">
-        <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-10">
-          <div>
+      <div className="relative mx-auto w-full max-w-6xl">
+        <div className="grid w-full items-start gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center lg:gap-10">
+          <div className="min-w-0">
             <InstallBanner />
 
             <motion.div
@@ -122,30 +122,30 @@ export function LandingHeroWow({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             >
-              <div className="mb-5 flex flex-wrap items-center gap-2">
-                <span className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-200/95">
-                  <span className="relative flex h-2 w-2">
+              <div className="mb-4 flex flex-col gap-2 sm:mb-5 sm:flex-row sm:flex-wrap sm:items-center">
+                <span className="inline-flex w-fit max-w-full items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1.5 text-[11px] font-semibold leading-snug text-emerald-200/95 sm:px-3 sm:text-xs">
+                  <span className="relative flex h-2 w-2 shrink-0">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
                     <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
                   </span>
-                  {BRAND_POSITIONING}
+                  <span className="min-w-0">{BRAND_POSITIONING}</span>
                 </span>
-                <span className="rounded-full border border-violet-500/25 bg-violet-500/10 px-3 py-1 text-xs font-medium text-violet-200/90 backdrop-blur">
+                <span className="w-full rounded-full border border-violet-500/25 bg-violet-500/10 px-2.5 py-1.5 text-[11px] font-medium leading-snug text-violet-200/90 backdrop-blur sm:w-auto sm:px-3 sm:text-xs">
                   {BRAND_MOBILE_HOOK}
                 </span>
               </div>
 
-              <h1 className="max-w-[20ch] text-balance text-4xl font-semibold tracking-tight text-inspect-text sm:max-w-none sm:text-5xl lg:text-[2.85rem] lg:leading-[1.12]">
+              <h1 className="w-full text-balance text-[1.625rem] font-semibold leading-[1.2] tracking-tight text-inspect-text min-[400px]:text-[1.75rem] sm:text-4xl sm:leading-[1.15] md:text-5xl lg:text-[2.65rem] lg:leading-[1.1]">
                 <span className="bg-gradient-to-br from-white via-slate-100 to-slate-400 bg-clip-text text-transparent">
                   {BRAND_TAGLINE}
                 </span>
               </h1>
 
-              <p className="mt-4 max-w-xl text-pretty text-base font-medium leading-relaxed text-inspect-text/95 sm:text-lg">
+              <p className="mt-3 max-w-xl text-pretty text-[0.9375rem] font-medium leading-relaxed text-inspect-text/95 sm:mt-4 sm:text-lg">
                 Paste your URL. We&apos;ll tell you what&apos;s wrong—no coding needed.
               </p>
 
-              <p className="mt-3 max-w-xl text-pretty text-sm leading-relaxed text-inspect-muted sm:text-base">
+              <p className="mt-2 min-h-[3.25rem] max-w-xl text-pretty text-sm leading-relaxed text-inspect-muted sm:mt-3 sm:min-h-[3.5rem] sm:text-base">
                 {BRAND_NAME} is a website issue finder—not another DevTools tab. It explains{" "}
                 <AnimatePresence mode="wait">
                   <motion.span
@@ -174,7 +174,7 @@ export function LandingHeroWow({
                 </p>
               </div>
 
-              <div className="hero-cta-glow relative mt-10">
+              <div className="hero-cta-glow relative mt-6 max-w-full sm:mt-10">
                 <LandingAnalyzeForm
                   url={url}
                   setUrl={setUrl}
@@ -184,24 +184,24 @@ export function LandingHeroWow({
                 />
               </div>
 
-              <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
-                <div className="flex flex-wrap items-center gap-3">
+              <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-4">
+                <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center">
                   <Link
                     href="/pricing"
-                    className="inline-flex items-center justify-center rounded-xl border border-violet-500/40 bg-violet-500/10 px-5 py-2.5 text-sm font-semibold text-violet-100 transition hover:bg-violet-500/20 hover:border-violet-400/50"
+                    className="touch-manipulation inline-flex min-h-11 items-center justify-center rounded-xl border border-violet-500/40 bg-violet-500/10 px-5 py-2.5 text-sm font-semibold text-violet-100 transition active:scale-[0.99] hover:border-violet-400/50 hover:bg-violet-500/20"
                   >
                     View Pro plans
                   </Link>
                   <a
                     href="#solutions"
-                    className="text-sm font-medium text-inspect-muted underline-offset-4 transition hover:text-inspect-text hover:underline"
+                    className="touch-manipulation inline-flex min-h-11 items-center justify-center text-sm font-medium text-inspect-muted underline-offset-4 transition hover:text-inspect-text hover:underline"
                   >
                     Explore solutions
                   </a>
                 </div>
-                <p className="text-xs text-inspect-muted">
+                <p className="text-[11px] leading-relaxed text-inspect-muted sm:text-xs">
                   <span className="text-emerald-400/90">✓</span> Free scan ·{" "}
-                  <span className="text-emerald-400/90">✓</span> No card for demo ·{" "}
+                  <span className="text-emerald-400/90">✓</span> No card ·{" "}
                   <Link href="/pricing" className="text-violet-300/90 hover:underline">
                     Pro from $79/mo
                   </Link>
@@ -210,7 +210,7 @@ export function LandingHeroWow({
             </motion.div>
           </div>
 
-          <div className="relative lg:min-h-[520px]">
+          <div className="relative min-w-0 lg:min-h-[520px]">
             <HeroSolutionMarquee reduce={reduce} />
             <motion.div
               initial={reduce ? false : { opacity: 0, scale: 0.96 }}
@@ -228,7 +228,7 @@ export function LandingHeroWow({
                     Updating
                   </span>
                 </div>
-                <div className="hero-ticker-mask py-2">
+                <div className="hero-ticker-mask py-2" data-lenis-prevent>
                   <motion.div
                     className="flex gap-8 whitespace-nowrap"
                     animate={reduce ? undefined : { x: [0, -800] }}
@@ -260,7 +260,7 @@ export function LandingHeroWow({
 
         <div
           id="solutions"
-          className="mt-16 scroll-mt-28 sm:mt-24"
+          className="mt-12 scroll-mt-[calc(4.5rem+env(safe-area-inset-top,0px))] sm:mt-24 sm:scroll-mt-28"
         >
           <p className="text-center text-xs font-bold uppercase tracking-[0.2em] text-violet-400/80">
             Main solutions
@@ -409,7 +409,7 @@ function HeroSolutionMarquee({ reduce }: { reduce: boolean }) {
   const track = [...marqueeCards, ...marqueeCards];
 
   return (
-    <div className="relative mx-auto max-w-md lg:mx-0 lg:ml-auto lg:max-w-none">
+    <div className="relative mx-auto w-full max-w-md lg:mx-0 lg:ml-auto lg:max-w-none">
       <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-violet-600/20 via-transparent to-blue-600/15 blur-2xl" />
 
       <motion.div
@@ -423,7 +423,7 @@ function HeroSolutionMarquee({ reduce }: { reduce: boolean }) {
         </p>
 
         <div
-          className="hero-marquee-viewport relative h-[min(52vh,420px)] overflow-hidden sm:h-[460px]"
+          className="hero-marquee-viewport relative mx-auto h-[min(36vh,280px)] max-w-full overflow-hidden sm:h-[min(44vh,380px)] md:h-[420px] lg:h-[460px]"
           role="region"
           aria-label="Scrolling examples of API issues, AI insights, and solution highlights"
         >
@@ -470,8 +470,8 @@ function MarqueeCardItem({
           : "bg-red-500/20 text-red-300";
     return (
       <div className="shrink-0 rounded-2xl border border-inspect-border bg-inspect-card/90 p-4 shadow-lg backdrop-blur-xl">
-        <div className="flex items-center justify-between gap-2 border-b border-inspect-border pb-3">
-          <span className="font-mono text-[11px] text-inspect-muted">
+        <div className="flex flex-wrap items-start justify-between gap-2 border-b border-inspect-border pb-3">
+          <span className="min-w-0 break-all font-mono text-[11px] text-inspect-muted">
             <span className="text-inspect-text/80">{card.method}</span>{" "}
             {card.path}
           </span>
@@ -542,8 +542,8 @@ function MarqueeCardItem({
   if (card.kind === "slow") {
     return (
       <div className="shrink-0 rounded-2xl border border-inspect-border bg-inspect-card/90 p-4 shadow-lg backdrop-blur-xl">
-        <div className="flex items-center justify-between gap-2 border-b border-inspect-border pb-3">
-          <span className="font-mono text-[11px] text-inspect-muted">
+        <div className="flex flex-wrap items-start justify-between gap-2 border-b border-inspect-border pb-3">
+          <span className="min-w-0 break-all font-mono text-[11px] text-inspect-muted">
             <span className="text-inspect-text/80">{card.method}</span>{" "}
             {card.path}
           </span>

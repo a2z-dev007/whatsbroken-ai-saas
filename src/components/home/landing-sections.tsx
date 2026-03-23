@@ -325,7 +325,10 @@ export function LandingSections() {
               </div>
             </div>
             <div className="rounded-2xl border border-inspect-border bg-inspect-bg/60 p-4">
-              <div className="flex gap-2 overflow-x-auto pb-3 scrollbar-hide">
+              <div
+                className="flex gap-2 overflow-x-auto pb-3 scrollbar-hide"
+                data-lenis-prevent
+              >
                 {["Summary", "Network", "AI"].map((t, j) => (
                   <span
                     key={t}

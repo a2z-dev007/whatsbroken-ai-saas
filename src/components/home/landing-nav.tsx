@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useCallback, useEffect, useState } from "react";
+import { useLenis } from "lenis/react";
 import { Logo } from "@/components/layout/logo";
 import { useDemoMode } from "@/components/providers";
 import { cn } from "@/lib/cn";
@@ -14,11 +16,41 @@ const links = [
   { href: "#pricing-teaser", label: "Pricing" },
 ] as const;
 
+const SCROLL_GLASS_THRESHOLD = 24;
+
 export function LandingNav() {
   const { demoMode, setDemoMode } = useDemoMode();
+  const [scrolled, setScrolled] = useState(false);
+
+  const onLenisScroll = useCallback((instance: { scroll: number }) => {
+    setScrolled(instance.scroll > SCROLL_GLASS_THRESHOLD);
+  }, []);
+
+  const lenis = useLenis(onLenisScroll, []);
+
+  useEffect(() => {
+    if (lenis) return;
+    const tick = () => {
+      const y =
+        window.scrollY ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop ||
+        0;
+      setScrolled(y > SCROLL_GLASS_THRESHOLD);
+    };
+    tick();
+    window.addEventListener("scroll", tick, { passive: true });
+    return () => window.removeEventListener("scroll", tick);
+  }, [lenis]);
 
   const scrollToAnalyze = () => {
-    document.getElementById("analyze")?.scrollIntoView({ behavior: "smooth" });
+    const el = document.getElementById("analyze");
+    if (!el) return;
+    if (lenis) {
+      lenis.scrollTo(el, { offset: -96, lerp: 0.08 });
+    } else {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
@@ -26,17 +58,19 @@ export function LandingNav() {
       initial={{ y: -12, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-      className="sticky top-0 z-30 border-b border-transparent px-4 py-3 backdrop-blur-xl sm:px-6"
-      style={{
-        background:
-          "color-mix(in srgb, var(--inspect-bg) 75%, transparent)",
-        borderColor: "var(--inspect-border)",
-      }}
+      className={cn(
+        "sticky top-0 z-30 border-b px-3 pb-3.5 pt-[max(0.875rem,env(safe-area-inset-top,0px))] transition-[background-color,backdrop-filter,box-shadow,border-color] duration-300 ease-out sm:px-6 sm:pb-4 sm:pt-[max(1rem,env(safe-area-inset-top,0px))]",
+        scrolled
+          ? "border-white/[0.08] bg-inspect-bg/65 shadow-[0_8px_32px_-12px_rgba(0,0,0,0.55)] backdrop-blur-2xl backdrop-saturate-150 ring-1 ring-inset ring-white/[0.04]"
+          : "border-transparent bg-transparent shadow-none backdrop-blur-none ring-0 ring-transparent",
+      )}
     >
-      <div className="mx-auto flex max-w-6xl items-center gap-4">
-        <Logo />
+      <div className="mx-auto flex max-w-6xl items-center gap-2 sm:gap-4">
+        <div className="min-w-0 flex-1 sm:flex-none">
+          <Logo />
+        </div>
         <nav
-          className="ml-4 hidden items-center gap-1 md:flex"
+          className="hidden items-center gap-1 md:ml-4 md:flex"
           aria-label="Page sections"
         >
           {links.map(({ href, label }) => (
@@ -49,7 +83,7 @@ export function LandingNav() {
             </a>
           ))}
         </nav>
-        <div className="ml-auto flex items-center gap-2 sm:gap-3">
+        <div className="flex shrink-0 items-center gap-1.5 sm:ml-auto sm:gap-3">
           <label className="hidden cursor-pointer items-center gap-2 text-xs text-inspect-muted sm:flex">
             <span>Demo</span>
             <button
@@ -78,16 +112,16 @@ export function LandingNav() {
           </Link>
           <Link
             href="/pricing"
-            className="hidden rounded-xl bg-gradient-to-r from-violet-600 to-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-md shadow-violet-500/25 transition hover:opacity-95 sm:inline-block"
+            className="hidden touch-manipulation rounded-xl bg-gradient-to-r from-violet-600 to-blue-600 px-3 py-2.5 text-sm font-semibold text-white shadow-md shadow-violet-500/25 transition active:scale-[0.98] hover:opacity-95 sm:inline-block sm:py-2"
           >
-            Get Pro
+            Pro
           </Link>
           <button
             type="button"
             onClick={scrollToAnalyze}
-            className="rounded-xl bg-inspect-elevated px-3 py-2 text-sm font-medium text-inspect-text ring-1 ring-inspect-border transition hover:ring-violet-500/40 sm:px-4"
+            className="touch-manipulation rounded-xl bg-inspect-elevated px-3 py-2.5 text-sm font-medium text-inspect-text ring-1 ring-inspect-border transition active:scale-[0.98] hover:ring-violet-500/40 sm:min-h-0 sm:px-4 sm:py-2"
           >
-            Free scan
+            Scan
           </button>
         </div>
       </div>

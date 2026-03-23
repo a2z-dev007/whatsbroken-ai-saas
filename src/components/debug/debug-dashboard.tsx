@@ -57,8 +57,8 @@ export function DebugDashboard({ url }: { url: string }) {
     url.trim() || "https://shop.example.com/checkout";
 
   return (
-    <div className="inspect-gradient-bg min-h-dvh pb-24 pt-4 lg:pb-8 lg:pt-6">
-      <div className="mx-auto max-w-6xl px-4 lg:px-8">
+    <div className="inspect-gradient-bg min-h-dvh pb-24 pt-3 sm:pt-4 lg:pb-8 lg:pt-6">
+      <div className="mx-auto max-w-6xl px-3 sm:px-4 lg:px-8">
         <header className="mb-4 flex flex-wrap items-center gap-3 border-b border-inspect-border pb-4">
           <Logo />
           <div className="min-w-0 flex-1">
@@ -108,7 +108,10 @@ export function DebugDashboard({ url }: { url: string }) {
             onTouchEnd={onTouchEnd}
           >
             <div className="glass-panel mb-3 rounded-2xl p-1">
-              <div className="scrollbar-hide flex gap-1 overflow-x-auto rounded-xl bg-inspect-bg/40 p-1">
+              <div
+                className="scrollbar-hide flex gap-1 overflow-x-auto rounded-xl bg-inspect-bg/40 p-1"
+                data-lenis-prevent
+              >
                 {tabs.map((t) => (
                   <button
                     key={t.id}
